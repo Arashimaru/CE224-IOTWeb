@@ -34,22 +34,21 @@
 <body>
   <div class="container">
     <header><h1>Nhà Thông Minh ESP32 Pro</h1><div class="time" id="clock"></div></header>
-
     <div class="grid">
       <!-- Cảm biến -->
       <div class="card">
         <h2>Cảm Biến Môi Trường</h2>
         <div class="sensor-grid">
           <div class="sensor-item">
-            <img src="nhietdo.png" alt="Nhiệt độ">
+            <img src="/nhietdo.png" alt="Nhiệt độ">
             <div class="value" id="nhietdo">--</div><div class="label">°C</div>
           </div>
           <div class="sensor-item">
-            <img src="doam.png" alt="Độ ẩm">
+            <img src="/doam.png" alt="Độ ẩm">
             <div class="value" id="doam">--</div><div class="label">%</div>
           </div>
           <div class="sensor-item">
-            <img src="gas.png" alt="Khí gas">
+            <img src="/gas.png" alt="Khí gas">
             <div class="value" id="khoi">--</div><div class="label">ppm</div>
           </div>
         </div>
@@ -60,12 +59,12 @@
         <h2>Điều Khiển Thiết Bị</h2>
         <div style="padding:20px">
           <div class="device">
-            <img src="den.png" id="imgDen">
+            <img src="/den.png" id="imgDen">
             <div class="device-info"><h3>ĐÈN</h3><div class="status" id="statusDen">ĐÃ TẮT</div></div>
             <button id="btnDen" class="btn-off">Off</button>
           </div>
           <div class="device">
-            <img src="quat.png" id="imgQuat">
+            <img src="/quat.png" id="imgQuat">
             <div class="device-info"><h3>QUẠT</h3><div class="status" id="statusQuat">ĐÃ TẮT</div></div>
             <button id="btnQuat" class="btn-off">Off</button>
           </div>
@@ -84,7 +83,6 @@
 <script>
 // ĐỔI IP ESP32 CỦA BẠN VÀO ĐÂY
 const ESP_IP = "192.168.1.168";
-
 const ws = new WebSocket(`ws://${ESP_IP}:81`);
 
 // Đồng hồ
@@ -114,8 +112,8 @@ ws.onmessage = (e)=>{
   const t = new Date().getTime();
 
   document.getElementById("nhietdo").textContent = d.nhietdo>=0 ? d.nhietdo.toFixed(1) : "--";
-  document.getElementById("doam").textContent    = d.doam>=0 ? d.doam.toFixed(1) : "--";
-  document.getElementById("khoi").textContent    = d.khoi;
+  document.getElementById("doam").textContent = d.doam>=0 ? d.doam.toFixed(1) : "--";
+  document.getElementById("khoi").textContent = d.khoi;
 
   chartT.series[0].addPoint([t, d.nhietdo], true, chartT.series[0].data.length>60);
   chartH.series[0].addPoint([t, d.doam], true, chartH.series[0].data.length>60);
@@ -125,26 +123,26 @@ ws.onmessage = (e)=>{
   if(d.den){
     document.getElementById("btnDen").className="btn-on"; document.getElementById("btnDen").innerHTML="On";
     document.getElementById("statusDen").textContent="ĐANG BẬT"; document.getElementById("statusDen").style.color="#00ff88";
-    document.getElementById("imgDen").src="den.png";
+    document.getElementById("imgDen").src="/denon.png";
   }else{
     document.getElementById("btnDen").className="btn-off"; document.getElementById("btnDen").innerHTML="Off";
     document.getElementById("statusDen").textContent="ĐÃ TẮT"; document.getElementById("statusDen").style.color="#888";
-    document.getElementById("imgDen").src="denon.png";
+    document.getElementById("imgDen").src="/den.png";
   }
 
   // Quạt
   if(d.quat){
     document.getElementById("btnQuat").className="btn-on"; document.getElementById("btnQuat").innerHTML="On";
     document.getElementById("statusQuat").textContent="ĐANG CHẠY"; document.getElementById("statusQuat").style.color="#00ff88";
-    document.getElementById("imgQuat").src="quat.png";
+    document.getElementById("imgQuat").src="/quaton.png";
   }else{
     document.getElementById("btnQuat").className="btn-off"; document.getElementById("btnQuat").innerHTML="Off";
     document.getElementById("statusQuat").textContent="ĐÃ TẮT"; document.getElementById("statusQuat").style.color="#888";
-    document.getElementById("imgQuat").src="quaton.png";
+    document.getElementById("imgQuat").src="/quat.png";
   }
 };
 
-document.getElementById("btnDen").onclick  = ()=>toggle('den');
+document.getElementById("btnDen").onclick = ()=>toggle('den');
 document.getElementById("btnQuat").onclick = ()=>toggle('quat');
 function toggle(dev){
   const btn = document.getElementById("btn"+dev.charAt(0).toUpperCase()+dev.slice(1));
