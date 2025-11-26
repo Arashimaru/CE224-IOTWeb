@@ -112,21 +112,21 @@ ws.onmessage = (e)=>{
   if(d.den){
     document.getElementById("btnDen").className="btn-on"; document.getElementById("btnDen").innerHTML="On";
     document.getElementById("statusDen").textContent="ĐANG BẬT"; document.getElementById("statusDen").style.color="#00ff88";
-    document.getElementById("imgDen").src="den.png";
+    document.getElementById("imgDen").src="denon.png";
   }else{
     document.getElementById("btnDen").className="btn-off"; document.getElementById("btnDen").innerHTML="Off";
     document.getElementById("statusDen").textContent="ĐÃ TẮT"; document.getElementById("statusDen").style.color="#888";
-    document.getElementById("imgDen").src="denon.png";
+    document.getElementById("imgDen").src="den.png";
   }
   // Quạt
   if(d.quat){
     document.getElementById("btnQuat").className="btn-on"; document.getElementById("btnQuat").innerHTML="On";
     document.getElementById("statusQuat").textContent="ĐANG CHẠY"; document.getElementById("statusQuat").style.color="#00ff88";
-    document.getElementById("imgQuat").src="quat.png";
+    document.getElementById("imgQuat").src="quaton.png";
   }else{
     document.getElementById("btnQuat").className="btn-off"; document.getElementById("btnQuat").innerHTML="Off";
     document.getElementById("statusQuat").textContent="ĐÃ TẮT"; document.getElementById("statusQuat").style.color="#888";
-    document.getElementById("imgQuat").src="quaton.png";
+    document.getElementById("imgQuat").src="quat.png";
   }
 };
 document.getElementById("btnDen").onclick = ()=>toggle('den');
@@ -138,4 +138,5 @@ function toggle(dev){
 }
 </script>
 </body>
+
 </html>
